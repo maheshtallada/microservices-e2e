@@ -1,0 +1,15 @@
+Make sure folder names doesn't have spaces to avoid any issues in configuring and running microservices
+-------------------------------------------------------------------------------------------	
+
+1. we have added spring-cloud-starter-config dependency while creating the project
+2. As this is a config-client, we need a config-server to connect to
+3. In earlier versions, without even configuring the config-server, config client project would be up and running.
+4. However, from latest versions, we need to add below property in application.properties until the config-server is created
+	spring.config.import=optional:configserver:http://localhost:8888	
+5. Later, we can remove the word optional
+-------------------------------------------------------------------------------------------	
+Spring cloud version, we a re using is 2021.0.3 and thast of spring boot is 2.7.2
+-------------------------------------------------------------------------------------------	
+
+@Value -- usage in full extent:: https://www.baeldung.com/spring-value-annotation 
+-------------------------------------------------------------------------------------------

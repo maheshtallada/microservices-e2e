@@ -1,0 +1,75 @@
+Challenges : 
+
+1. Bounded Context:
+	knowing which microservice will have to do a particular task and which not to is a evolutionary process
+2. Configuration Management : 
+		As the no. of microservices grow from 10s to 100s and with different environments and different instances,
+			the configuration will be huge
+3. Dynamic scale up and scale down
+	Load on diff microservice will be diff at any given instance of time.	
+	Challenge here is implementing the load balancing.
+4. 	Visibility & Monitoring
+	i. If any issue/bug occurs/exists, identifying the which microservice is the cause for this is a challenge..
+		and we need to have a centralised logging for this to debug and analyse
+	ii. have to identify which MS is down/ which MS is causing out of memory
+5. 	pack of cards:
+	IF MSs is not properly designed, MS architecture will be like pack of cards
+		-- if the fundamental MS is down, then entire application goes down
+		-- we need to make our app, FAULT TOLERANT
+		
+		
+Spring Cloud Finchley M2 Release
+
+(Bunch of Projects): solutions to above challenges
+
+projects.spring.io/spring-cloud/ -- Main Projects Section
+
+Spring Cloud Netflix, ...
+	Integration with various Netflix OSS components (Eureka, Hystrix, Zuul, Archaius, etc.).
+
+-------------------------------------------------------------------------------------------
+Configuration Management 		-- Spring Cloud config server using Git
+Dynamic scale up and scale down	
+		-- Naming server (Eureka)   
+				-- All the instances of all the services would register to the Eureka server called "Service regisration"
+				-- "Service Discovery"
+		-- Ribbon (Client Side load balancing)
+			--	Spring Cloud Load Balancer in latest version
+		-- Feign (Easier Rest clients)
+Visibility & Monitoring 
+						-- Zipkin Distributed Tracing  
+								(Spring Cloud Sleuth -- to trace request among multiple components)
+						-- Netflix Zuul APi Gateway
+						-- Spring Cloud Gateway ( instead of Zuul in Latest version)
+							-- helps in logging, security, analytics, etc which are the common requirements
+							-- need not be implemented in every microservice.
+FAULT TOLERANCE -- Hystrix
+				-- we will be using Resilience 4J instead if Hystrix in latest version for circuit breaker
+						-- If a service is down, Hystrix helps in configuring the default response.
+-------------------------------------------------------------------------------------------
+
+Advantages:
+
+1. New Technology and Process adaptation
+	-- each MS can be built on a diff technology
+	-- In Monolith app, we have to migrate entire app to upgrade to a new tech
+2. Dynamic Scaling
+	-- based on load at diff point, we can scale it accordingly
+3. 	Faster release cycles
+	-- much frequent releases
+-------------------------------------------------------------------------------------------	
+
+
+We have to standardize ports as we can have lots of projects in the entire Application
+
+
+Ex: 
+1. Spring Cloud config server == 8888
+2. Netfix Eureka naming server == 8761
+3. Netflix Zuul Api Gateway server == 8765
+4. Zipkin distributed tracing server == 9411
+
+For business logic, we can have unlimited microservices, so we can configure module wise ports with a range of ports
+-------------------------------------------------------------------------------------------	
+
+
