@@ -24,3 +24,25 @@ Configuration Management ::
 3.	Now we have to create a repo, created a local repo for now (create folder and do git init) and 
 	created a limits-service.properties
 -------------------------------------------------------------------------------------------
+
+Steps to debug issues if any ::
+https://github.com/in28minutes/spring-microservices-v2/blob/main/03.microservices/01-step-by-step-changes/microservices-v2-1.md#spring-cloud-config-server---steps-01-to-08
+-------------------------------------------------------------------------------------------
+4. With this step 
+	i. we connected git repo to config-server by adding the property	
+		spring.cloud.config.server.git.uri=<for-now-local-path-as-we-have-local-repo>
+	ii. add @EnableConfigServer to the class with @SpringBootApplication in the config-server project
+	iii. now we can retrive properties from git repo through GET 
+			http::/localhost:8888/<filename-of-properties-without-extension>/<profile>	
+			(http://localhost:8888/limits-service/default)
+-------------------------------------------------------------------------------------------
+5. To connect limits-service to config-server, spring-cloud-starter-config dependency is needed, which we added already
+	-- Now, add property spring.application.name=limits-service
+		which is spring.application.name=<name of the property file without ext form the git-config-repo>
+	-- Now we should be able to fetch the value from git repo in limit-service
+-------------------------------------------------------------------------------------------
+
+
+
+
+
