@@ -13,3 +13,14 @@ Spring cloud version, we a re using is 2021.0.3 and thast of spring boot is 2.7.
 
 @Value -- usage in full extent:: https://www.baeldung.com/spring-value-annotation 
 -------------------------------------------------------------------------------------------
+
+Configuration Management :: 
+
+1. In any service with business logic say limits-service here, 
+	add config-client/spring-cloud-starter-config dependency to make it a client
+2. create a new project just with config-server/spring-cloud-config-server dependency
+	-- devtools, lombok and any other supporting dependencies can be added
+----till the previous commit, the above two steps are added
+3.	Now we have to create a repo, created a local repo for now (create folder and do git init) and 
+	created a limits-service.properties
+-------------------------------------------------------------------------------------------
