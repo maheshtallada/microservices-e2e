@@ -41,6 +41,30 @@ https://github.com/in28minutes/spring-microservices-v2/blob/main/03.microservice
 		which is spring.application.name=<name of the property file without ext form the git-config-repo>
 	-- Now we should be able to fetch the value from git repo in limit-service
 -------------------------------------------------------------------------------------------
+Values in application.properties have less priority than those of in git repo
+-------------------------------------------------------------------------------------------
+
+Configuring profiles ::
+	As we know, generally in spring boot, we will add various application.properties files and set the profile through a 
+	separate property spring.profiles.active=<desired_profile>
+	
+	-- Similiarly in MS, now we need to add multiple files in git repo and set the profile in limits-service
+	-- However, to make env-specific configuration work, we need to add one more property
+			spring.cloud
+--------------------------------------------------------------------------------------------
+Actually, if we observe, the value of spring.application.name is used for the properties files (ex:limit-service.properties) in git-config-repo.
+
+However if we want to give the properties files a different name, we have an optional	
+	-- i.e., spring.cloud.config.name=<name_of_the_properties_file_without_ext>
+--------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 
