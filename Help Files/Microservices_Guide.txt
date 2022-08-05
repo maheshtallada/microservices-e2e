@@ -57,6 +57,22 @@ Actually, if we observe, the value of spring.application.name is used for the pr
 However if we want to give the properties files a different name, we have an optional	
 	-- i.e., spring.cloud.config.name=<name_of_the_properties_file_without_ext>
 --------------------------------------------------------------------------------------------
+while retrieving the port we are running on, we chose Environment class, however we have to choose from below package
+import org.springframework.core.env.Environment;
+
+and from getProperty("local.server.port")
+--------------------------------------------------------------------------------------------
+How to run same project in a new instane with different port ?
+
+Navigate to Run-> Run Configurations OR rightclick on springbootapplcation main class-> run as -> run configurations
+
+	-- We can see the avaliable projects -- right click and select duplicate.
+	-- name the original one and this duplicate one with proper naming, preferably with port added 
+	-- for the new one, in VM arguments --> we can give "-Dserver.port=8081" -> apply -> and run
+--------------------------------------------------------------------------------------------
+
+
+
 
 
 
