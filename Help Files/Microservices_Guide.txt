@@ -71,11 +71,32 @@ Navigate to Run-> Run Configurations OR rightclick on springbootapplcation main 
 	-- for the new one, in VM arguments --> we can give "-Dserver.port=8081" -> apply -> and run
 --------------------------------------------------------------------------------------------
 
+JPA props explained : 
 
+			---------------------------------
+			spring.jpa.show-sql=true
 
+				-- to see all sql statements generated
+			---------------------------------	
+			spring.h2.console.enabled=true
 
+				--to see the details present in Database
+			---------------------------------
+			spring.datasource.url=jdbc:h2:mem:testdb;NON_KEYWORDS=USER
 
+				this is to make the url constant, else each time the project run, there will be a new url 
+			---------------------------------
+			spring.jpa.defer-datasource-initialization=true
 
+				-- In latest versions (check, from which version) the data.sql file will be executed even before the code is executed. i.e., even before the table is created.
+				-- to avoid that, we have to have this property
+			---------------------------------
+			spring.data.jpa.repositories.bootstrap-mode=default
+
+				-- need to know
+---------------------------------------------------------------------------------------------------
+NOTE : "from" is a keyword in sql, so have we named the column differently from java bean's field
+---------------------------------------------------------------------------------------------------
 
 
 
