@@ -97,8 +97,28 @@ JPA props explained :
 ---------------------------------------------------------------------------------------------------
 NOTE : "from" is a keyword in sql, so have we named the column differently from java bean's field
 ---------------------------------------------------------------------------------------------------
+Feign Client intro :
 
+1. In the previous step, to call currency exchange servie, we used a RestTemplate and passed variables in a map, which becomes tedious to 
+	call various services from each-other.
+	
+2. Here comes feign, add the below dependency in currency-conversion-service
 
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+
+3. Add @EnableFeignClients in currency-conversion-service application class (on with @SBA) which is the target microservice
+4. Add a proxy interface in currency-conversion-service and add 
+	@FeignCLient(name="<application-name-of the app we need to call>", url="<url-of-the-app-we-gonna-call-without-specific-resource>")
+	
+	Ex: from curr-conv-ser, we need to call curr-exc-ser, so add this interface in curr-conv-ser with
+		@FeignClient(name="currency-exchange", url="localhost:8000")
+		
+	4.1 The specific url of a service we will be calling need to be mentioned in a method declaration (not definition)
+		-- 
+---------------------------------------------------------------------------------------------------
 
 
 
