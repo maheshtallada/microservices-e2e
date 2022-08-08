@@ -146,8 +146,24 @@ Registering the eureka-clients with eureka-sever
 	"eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka"
 3. without this prop, there might be a warning shown in Eureka server UI.	
 ---------------------------------------------------------------------------------------------------
+Load Balancing ::
+1. Earlier, in cur-conv-ser, we hardcoded the url localhost:8100 in proxy interface, however we can just remove that now as we made the apps - eureka clients.
+2. just remove 
+	url="localhost:8000"
+	from
+	@FeignClient(name="currency-exchange", url="localhost:8000")
+	in CurrencyExchangeProxy class
+3. We can see the application is still running. the url is provided by eureka-server
+4. Now, run the cur-exc-ser in diff port from run configurations and check in eureka-server's UI for no. of instances of cu-exc-ser
+5. try to call the rest service in cur-exc-ser multiple times with less span and we can observe the diff in port no.
 
+Internals :
+1. this is called client side load balancing, being done by FEIGN
+2. loadbalancer jars are added through eureka-client dependency
+3. FEIGN uses this framework to distribute the load.
 
+NOTE : Here Load Balancing is done with help of Eureka-client and FEIGN, if we choose other ways for service discovery and internal calling of micro-services, there will be a different process for Load balancing
+---------------------------------------------------------------------------------------------------
 
 
 
