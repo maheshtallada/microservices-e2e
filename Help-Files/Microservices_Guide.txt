@@ -139,8 +139,13 @@ Code :
 raw test: 
 open http://localhost:8761/ to observe the eureka server's UI with "No instances available" under "Instances currently registered with Eureka"
 ---------------------------------------------------------------------------------------------------
-
-
+Registering the eureka-clients with eureka-sever
+1. As we added, naming-server, we need to make our services with business logic(we call them eureka-clients) register with above created Eureka-server. Just need to add Eureka client dependency.!	
+2. Just by adding, ideally the conn b/w eureka client and sevre is done, 
+	However, adding this prop will makesure the connection is in place without any doubts
+	"eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka"
+3. without this prop, there might be a warning shown in Eureka server UI.	
+---------------------------------------------------------------------------------------------------
 
 
 
