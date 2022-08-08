@@ -109,15 +109,17 @@ Feign Client intro :
   <artifactId>spring-cloud-starter-openfeign</artifactId>
 </dependency>
 
-3. Add @EnableFeignClients in currency-conversion-service application class (on with @SBA) which is the target microservice
+3. Add @EnableFeignClients in currency-conversion-service application class (on with @SBA) which is the source microservice
 4. Add a proxy interface in currency-conversion-service and add 
-	@FeignCLient(name="<application-name-of the app we need to call>", url="<url-of-the-app-we-gonna-call-without-specific-resource>")
+	@FeignClient(name="<application-name-of the app we need to call>", url="<url-of-the-app-we-gonna-call-without-specific-resource>")
 	
 	Ex: from curr-conv-ser, we need to call curr-exc-ser, so add this interface in curr-conv-ser with
 		@FeignClient(name="currency-exchange", url="localhost:8000")
 		
 	4.1 The specific url of a service we will be calling need to be mentioned in a method declaration (not definition)
-		-- 
+		-- @GetMapping("currency-exchange/from/{from}/to/{to}")
+	
+	By this, we understood that, to call exc-ser from conv-ser, we need to work in conv-ser only, ntg to do with exc-ser
 ---------------------------------------------------------------------------------------------------
 
 
