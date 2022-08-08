@@ -122,6 +122,24 @@ Feign Client intro :
 	By this, we understood that, to call exc-ser from conv-ser, we need to work in conv-ser only, ntg to do with exc-ser
 ---------------------------------------------------------------------------------------------------
 
+However, we hardcoded the url of the cur-exc ser in proxy, what if we want to make it to talk to a different instance, we can't change it in code, we need some kind of flexibility to change the instance based on load, which is possible through service discovery and load balancing
+---------------------------------------------------------------------------------------------------
+Service Resgistry :
+1. All the instances of all the microservices register with service-registry OR Naming-server.
+2. the one needs to communicate with other, will request what are all the addresses of the required service
+3. Then with help of load balancer, calls the particular instance
+4. popular naming server is Eureka Server
+5. Default port for naming server is 8761, similar to config sever having 8888
+
+Code :
+1. Add a new project with <Eureka server> dependency, and otherr if required like dev tools, actuator
+2. add @EnableEurekaServer
+3. Add properties for adding standard port, spring.application.name and 2 properties to avoid the application not to register with itself
+
+raw test: 
+open http://localhost:8761/ to observe the eureka server's UI with "No instances available" under "Instances currently registered with Eureka"
+---------------------------------------------------------------------------------------------------
+
 
 
 
