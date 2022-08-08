@@ -164,6 +164,19 @@ Internals :
 
 NOTE : Here Load Balancing is done with help of Eureka-client and FEIGN, if we choose other ways for service discovery and internal calling of micro-services, there will be a different process for Load balancing
 ---------------------------------------------------------------------------------------------------
+Spring Cloud API Gateway :: To Route APIs && provides cross cutting concerns like security, monitoring/metrics and Resiliency
+
+Zuul is no longer supported.
+Spring Cloud is recommended now.
+
+Code :
+1. add eureka client and gateway with devtools and actuator
+2. Along with spring.application.name and server.port=8765(API gateway specifi), we will add
+	eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
+	to mention explicitly that this app is connected to eureka-server
+---------------------------------------------------------------------------------------------------
+
+
 
 
 
