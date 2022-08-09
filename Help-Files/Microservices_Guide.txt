@@ -183,8 +183,29 @@ Custom Routes: (we can re-direct uris and add headers if needed and much more cu
 	Ex: all our urls has app name twice, one is formed because of eureka-client and another is in actual uri, this we cn re-direct to an url with one -name only
 ---QUITE TOUGH TO REMEMBER
 ---------------------------------------------------------------------------------------------------
+Circuit Breaker :
 
+https://resilience4j.readme.io/docs/getting-started-3   -- for integration of Resilience4J with SpringBoot
 
+required dependencies :
+
+1. starter-actuator
+2. starter-aop
+3. resilience4j-spring-boot2
+
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+<dependency>
+	<groupId>io.github.resilience4j</groupId>
+	<artifactId>resilience4j-spring-boot2</artifactId>
+</dependency>
+---------------------------------------------------------------------------------------------------
 
 
 
