@@ -174,8 +174,15 @@ Code :
 2. Along with spring.application.name and server.port=8765(API gateway specifi), we will add
 	eureka.client.serviceUrl.defaultZone=http://localhost:8761/eureka
 	to mention explicitly that this app is connected to eureka-server
+3. Need to add another property to make it discover other services	
+	spring.cloud.gateway.discovery.locator.enabled=true
+4. to make the url uniform in case
+	spring.cloud.gateway.discovery.locator.lower-case-service-id=true
 ---------------------------------------------------------------------------------------------------
-
+Custom Routes: (we can re-direct uris and add headers if needed and much more customization
+	Ex: all our urls has app name twice, one is formed because of eureka-client and another is in actual uri, this we cn re-direct to an url with one -name only
+---QUITE TOUGH TO REMEMBER
+---------------------------------------------------------------------------------------------------
 
 
 
