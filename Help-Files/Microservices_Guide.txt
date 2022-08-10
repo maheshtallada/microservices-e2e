@@ -222,6 +222,13 @@ Code :
 		-- this is to configure interval between retries.
 5. resilience4j.retry.instances.sample-api.enable-exponential-backoff=true
 	-- 
+6. @CircuitBreaker(name="", fallBackMethod="")
+	-- When default % no. of requests failes, CircuitBreaker state changes from Closed to Open. and the after the default time limit, it changes to half-open or some intermediatary state and hits default no. of times to retry, then if succeeds, goes to closed state, else goes to open state.
+	
+	All these default values can be configured in application.properties using various properties ., 
+	
+		refer -- resilience4j.redme.io/docs/circuitbreaker
+7. 
 ---------------------------------------------------------------------------------------------------
 
 
