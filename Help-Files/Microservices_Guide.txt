@@ -205,6 +205,23 @@ required dependencies :
 	<groupId>io.github.resilience4j</groupId>
 	<artifactId>resilience4j-spring-boot2</artifactId>
 </dependency>
+
+
+Code :
+
+1. @Retry(name="default") -- retry for 2 more times if there's an error (total : 3 including first normal attempt)
+2. resilience4j.retry.instances.<retryName>.maxRetryAttempts=4 (total:4 including first normal attempt)
+	this <retryName> is given as attribute for @Retry
+	i.e.,  @Retry(name="<retryName>")
+	
+3. @Retry(name="<retryName>", fallBackMethod="hardCodedResponse")	
+	-- here "hardCodedResponse" is not a String, instead its the method name which needs to be called when fallback happens
+	-- that method need to accept Exception obj as parameter.
+4. resilience4j.retry.instances.<retryName>.wait-duration=<time>
+	Ex: resilience4j.retry.instances.sample-api.wait-duration=1s
+		-- this is to configure interval between retries.
+5. resilience4j.retry.instances.sample-api.enable-exponential-backoff=true
+	-- 
 ---------------------------------------------------------------------------------------------------
 
 
