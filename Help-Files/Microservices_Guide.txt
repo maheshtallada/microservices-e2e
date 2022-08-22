@@ -163,6 +163,19 @@ Internals :
 3. FEIGN uses this framework to distribute the load.
 
 NOTE : Here Load Balancing is done with help of Eureka-client and FEIGN, if we choose other ways for service discovery and internal calling of micro-services, there will be a different process for Load balancing
+
+
+
+
+OR 
+we can use @LoadBalanced on restTemplate bean like below and use restTemplate to call other microservices.
+
+
+@Bean
+@LoadBalanced
+public RestTemplate getRestTeplate() {
+	return new RestTemplate();
+}
 ---------------------------------------------------------------------------------------------------
 Spring Cloud API Gateway :: To Route APIs && provides cross cutting concerns like security, monitoring/metrics and Resiliency
 
@@ -231,5 +244,12 @@ Code :
 7. 
 ---------------------------------------------------------------------------------------------------
 
+@RefreshScope
+
+1. In Configuration client, where we need the values from git, we need to add above annotation.
+2. It might create Circular Dependency while fetching the beans, in order to avoid that, we need to add @lazy for bean instantiation
+3. With this annotation on beans, the beans which fetches value from cloud config through @Value, gets refreshed. The beans which fetches through @ConfigurationProperties doesn't need @RefreshScope
+4. This annotation is effective after we hit the refresh enpoint.
 
 
+we can call the following endpoint from config clients to get the configuration refreshed ::  /actuator/refresh
