@@ -253,3 +253,55 @@ Code :
 
 
 we can call the following endpoint from config clients to get the configuration refreshed ::  /actuator/refresh
+---------------------------------------------------------------------------------------------------
+Rate Limiting : 
+@RateLimiter(name="default")
+
+Ex req: In 10seconds, I only want to allow 10K requests to the particular api
+-- this particular configuration of 10 nd 10K can be configured.
+
+
+properties :: 
+allows 2 requests for every 10 seconds
+resilience4j.ratelimiter.instances.default.limit-for-period=2
+resilience4j.ratelimiter.instances.default.limit-refresh-period=10s
+
+
+here default is the name for configuration. we can have diff configs for diff APIs.
+
+allows 5 requests for every second
+resilience4j.ratelimiter.instances.mylimit.limit-for-period=5
+resilience4j.ratelimiter.instances.mylimit.limit-refresh-period=1s
+
+1. How do we send numerous requests within seconds range ?
+-- command to execute ::     
+
+		watch -n 1 curl http://localhost:8000/sample-api
+
+This means it will call every second. Acc to 'default' config we set, only 2 gets succeeded in 10s.
+
+2. What error do we get if we try to send more requests ::
+ -- It will display, RateLimiter 'default' does not permit further calls.
+ 
+3. Need to know :: 
+	1. For how long the command keeps sending requests and 
+	2. what does this way of simulation called ? 
+	3. What does other parameters indicate ?
+---------------------------------------------------------------------------------------------------
+Bulk Head ::
+Indicate the number of concurrent requests allowed.
+
+@Bulkhead(name="default")
+
+Props:
+resilience4j.bulkhead.instances.default.max-concurrent-calls=10
+
+
+this means, only 10 concurrent calls can be made.
+
+
+1. Error we get if more concurrent calls are made :: need to explore
+---------------------------------------------------------------------------------------------------
+
+
+
