@@ -1,0 +1,25 @@
+https://www.youtube.com/watch?v=9x_6VLk3GtY -- part1  -- also has list of videos for other Java related frameworks
+
+https://youtu.be/oNL5tQ4L9xg -- part2
+
+Config management
+load balancing -- feign client --- here, there's no need of @LoadBalanced annotation.
+Inter-service communication (we know Feign client)
+circuit breaker  (Hystrix old -- Resilience 4j is new)
+centralised logging
+api gateway
+------------------
+what why and when microservices
+Difference between Monolithic, Service-Oriented SOA and MS
+How to design MS
+which Db does MS prefer
+Imp Design patterns used in MS
+What are Bounded Contexts -- (knowing which microservice will have to do a particular task and which not to is a evolutionary process)
+How to test MS
+How to Secure MS (Authentication and Authorization)
+How to Monitor MS, what are the tools available ?
+------------------
+How to deploy MS
+Why are containers a good infrastructure for Microservices ?
+How to deploy MS in docker ?
+How to deploy MS in AWS ?
